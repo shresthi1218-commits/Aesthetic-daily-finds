@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aesthetic Daily Finds by Shreshti</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #FBF9F5;
+            --card-bg: #FFFFFF;
+            --text-main: #4A403A;
+            --accent-pink: #E8C5C8;
+            --accent-warm: #D4A373;
+            --soft-cream: #F4EBE1;
+            --border-color: #EFECE6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.6;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px 20px 20px;
+            background-color: var(--bg-color);
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #3C302A;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font-size: 1rem;
+            color: #7A6F66;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .nav-categories {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .filter-btn {
+            background-color: var(--card-bg);
+            border: 1px solid var(--accent-pink);
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--accent-pink);
+            color: #3C302A;
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 60px 20px;
+        }
+
+        .masonry-grid {
+            column-count: 4;
+            column-gap: 20px;
+        }
+
+        @media (max-width: 1024px) {
+            .masonry-grid {
+                column-count: 3;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .masonry-grid {
+                column-count: 2;
+            }
+            header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .masonry-grid {
+                column-count: 1;
+            }
+        }
+
+        .product-card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            break-inside: avoid;
+            box-shadow: 0 4px 20px rgba(74, 64, 58, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(74, 64, 58, 0.1);
+        }
+
+        .image-wrapper {
+            position: relative;
+            width: 100%;
+            background-color: var(--soft-cream);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 16px;
+        }
+
+        .product-category-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #A3968B;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .product-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #3C302A;
+            margin-bottom: 8px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 12px;
+        }
+
+        .product-price {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #6C5D53;
+        }
+
+        .shop-btn {
+            background-color: #3C302A;
+            color: #FBF9F5;
+            padding: 6px 14px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: background 0.2s ease;
+        }
+
+        .shop-btn:hover {
+            background-color: var(--accent-warm);
+            color: #fff;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background-color: var(--soft-cream);
+            color: #7A6F66;
+            font-size: 0.85rem;
+            margin-top: 40px;
+            border-top: 1px solid var(--border-color);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Aesthetic Daily Finds by Shreshti</h1>
+        <p>curated cozy essentials & daily inspirations</p>
+    </header>
+
+    <div class="nav-categories">
+        <button class="filter-btn active" onclick="filterSelection('all')">All Finds</button>
+        <button class="filter-btn" onclick="filterSelection('womens')">Women's Fashion</button>
+        <button class="filter-btn" onclick="filterSelection('mens')">Men's Fashion</button>
+        <button class="filter-btn" onclick="filterSelection('cups')">Cups & Accessories</button>
+        <button class="filter-btn" onclick="filterSelection('home')">Home Decor</button>
+    </div>
+
+    <div class="container">
+        <div class="masonry-grid" id="productGrid">
+
+            <!-- Product 1: Women's Fashion -->
+            <div class="product-card" data-category="womens">
+                <div class="image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80" alt="Cozy Knit Sweater">
+                </div>
+                <div class="product-info">
+                    <div class="product-category-tag">Women's Fashion</div>
+                    <div class="product-title">Chic Beige Knit Sweater</div>
+                    <div class="product-footer">
+                        <span class="product-price">₹1,999</span>
+                        <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="shop-btn">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2: Home Decor -->
+            <div class="product-card" data-category="home">
+                <div class="image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=600&q=80" alt="Aesthetic Room Decor">
+                </div>
+                <div class="product-info">
+                    <div class="product-category-tag">Home Decor</div>
+                    <div class="product-title">Minimalist Ceramic Vase</div>
+                    <div class="product-footer">
+                        <span class="product-price">₹1,299</span>
+                        <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="shop-btn">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3: Cups & Accessories -->
+            <div class="product-card" data-category="cups">
+                <div class="image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80" alt="Cozy Coffee Mug">
+                </div>
+                <div class="product-info">
+                    <div class="product-category-tag">Cups & Accessories</div>
+                    <div class="product-title">Handmade Aesthetic Ceramic Mug</div>
+                    <div class="product-footer">
+                        <span class="product-price">₹699</span>
+                        <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="shop-btn">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 4: Men's Fashion -->
+            <div class="product-card" data-category="mens">
+                <div class="image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?auto=format&fit=crop&w=600&q=80" alt="Men's Casual Wear">
+                </div>
+                <div class="product-info">
+                    <div class="product-category-tag">Men's Fashion</div>
+                    <div class="product-title">Oversized Neutral Hoodie</div>
+                    <div class="product-footer">
+                        <span class="product-price">₹1,799</span>
+                        <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="shop-btn">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Aesthetic Daily Finds by Shreshti. Curated with love for Pinterest lovers.</p>
+    </footer>
+
+    <script>
+        function filterSelection(category) {
+            let cards = document.querySelectorAll('.product-card');
+            let buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
